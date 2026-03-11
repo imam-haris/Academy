@@ -36,9 +36,9 @@ export default function Navbar() {
           <li><Link href="#">Student Login</Link></li>
         </ul>
 
-        <div className={`nav-actions ${isMobileMenuOpen ? "active" : ""}`}>
+        {/* <div className={`nav-actions ${isMobileMenuOpen ? "active" : ""}`}>
           <Link href="/programs" className="btn-primary btn-sm">Enroll Now</Link>
-        </div>
+        </div> */}
 
         <button
           className="mobile-toggle"

@@ -35,7 +35,7 @@ export default function Home() {
     // Stats Counter Animation (Simulated for this transformation)
     // In a real app, we might use a library or more complex logic,
     // but we'll stick to the original feel.
-    
+
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
@@ -60,15 +60,15 @@ export default function Home() {
               <span className="gradient-text">with Expert Coaching</span>
             </h1>
             <p className="hero-subtitle animate-on-scroll">
-              Join thousands of students preparing for competitive exams with structured learning, 
+              Join thousands of students preparing for competitive exams with structured learning,
               experienced faculty, and personalized mentorship.
             </p>
             <div className="hero-ctas animate-on-scroll">
               <a href="#programs" className="btn-primary btn-lg">
                 Enroll Now
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
               </a>
-              <a href="#programs" className="btn-outline btn-lg">
+              <a href="/programs" className="btn-outline btn-lg">
                 Explore Programs
               </a>
             </div>
@@ -89,11 +89,11 @@ export default function Home() {
             <span className="section-tag">About Us</span>
             <h2 className="section-title">About <span className="gradient-text">World Touch Coaching</span></h2>
             <p className="section-desc">
-              World Touch Coaching is a premier coaching institute specializing in government exam preparation — SSC, Railway, BPSC, Bihar Police, Bihar SI, Defence, Banking, CTET/STET, and UGC NET. 
+              World Touch Coaching is a premier coaching institute specializing in government exam preparation — SSC, Railway, BPSC, Bihar Police, Bihar SI, Defence, Banking, CTET/STET, and UGC NET.
               Our mission is to provide structured guidance, experienced mentorship, and an environment where students can unlock their full potential.
             </p>
             <p className="section-desc" style={{ marginTop: '20px' }}>
-              With expert faculty, well-designed study materials, and rigorous mock test series, we prepare students for success across all major 
+              With expert faculty, well-designed study materials, and rigorous mock test series, we prepare students for success across all major
               government competitive exams with proven strategies and personalized attention.
             </p>
           </div>
@@ -108,25 +108,30 @@ export default function Home() {
             <h2 className="section-title">Our <span className="gradient-text">Success Record</span></h2>
             <p className="section-desc">Consistency is the hallmark of World Touch Coaching.</p>
           </div>
-          
-          <div className="hero-stats animate-on-scroll" style={{ background: 'var(--bg-secondary)', padding: '60px', borderRadius: 'var(--radius-xl)', border: '1px solid var(--border-color)' }}>
-            <div className="stat">
-              <span className="stat-value">5000</span><span className="stat-suffix">+</span>
+
+          <div className="stats-grid-container animate-on-scroll">
+            <div className="stat-card">
+              <div className="stat-number">
+                <span className="stat-value">5000</span><span className="stat-suffix">+</span>
+              </div>
               <span className="stat-label">Students Mentored</span>
             </div>
-            <div className="stat-divider"></div>
-            <div className="stat">
-              <span className="stat-value">1200</span><span className="stat-suffix">+</span>
+            <div className="stat-card">
+              <div className="stat-number">
+                <span className="stat-value">1200</span><span className="stat-suffix">+</span>
+              </div>
               <span className="stat-label">Selections</span>
             </div>
-            <div className="stat-divider"></div>
-            <div className="stat">
-              <span className="stat-value">50</span><span className="stat-suffix">+</span>
+            <div className="stat-card">
+              <div className="stat-number">
+                <span className="stat-value">50</span><span className="stat-suffix">+</span>
+              </div>
               <span className="stat-label">Top Rankers</span>
             </div>
-            <div className="stat-divider"></div>
-            <div className="stat">
-              <span className="stat-value">10</span><span className="stat-suffix">+</span>
+            <div className="stat-card">
+              <div className="stat-number">
+                <span className="stat-value">10</span><span className="stat-suffix">+</span>
+              </div>
               <span className="stat-label">Years Excellence</span>
             </div>
           </div>
@@ -145,11 +150,11 @@ export default function Home() {
           <div className="director-card-container animate-on-scroll">
             <div className="director-card">
               <div className="director-image-wrapper">
-                <Image 
-                  src="/director.jpg" 
-                  alt="Director - World Touch Coaching" 
-                  width={400} 
-                  height={500} 
+                <Image
+                  src="/director.jpg"
+                  alt="Director - World Touch Coaching"
+                  width={400}
+                  height={500}
                   className="director-image"
                 />
               </div>
