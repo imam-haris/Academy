@@ -331,35 +331,6 @@ h1, h2, h3, h4, h5 {
   padding: 0 24px;
 }
 
-/* Spline Asset */
-.hero-spline {
-  position: relative;
-  width: 100%;
-  height: 600px;
-  border-radius: 0;
-  overflow: hidden;
-  margin-bottom: 40px;
-}
-
-.hero-spline .spline-container {
-  display: block;
-  width: 100%;
-  height: 100%;
-  contain: layout;
-  transform: scale(1.4); /* Zoom into the spline */
-  transform-origin: center center;
-}
-
-.spline-fallback {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: var(--bg-secondary);
-  background-image: var(--gradient-glow);
-  display: none;
-}
 
 .hero-badge {
   display: inline-flex;

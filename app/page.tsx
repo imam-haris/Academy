@@ -1,13 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import dynamic from "next/dynamic";
-
-// Dynamically import Spline to avoid SSR issues
-const Spline = dynamic(() => import("@splinetool/react-spline"), {
-  ssr: false,
-  loading: () => <div className="spline-fallback" style={{ display: 'block' }}></div>
-});
 
 export default function Home() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -94,15 +87,7 @@ export default function Home() {
       {/* ═══════════════════ HERO ═══════════════════ */}
       <section className="hero" id="hero">
         <div className="hero-inner">
-          {/* Right: Spline 3D Scene */}
-          <div className="hero-spline">
-            <div className="spline-container">
-              <Spline scene="https://prod.spline.design/mhCHnTwnbxxKXswb/scene.splinecode" />
-            </div>
-            <div className="spline-fallback"></div>
-          </div>
-
-          {/* Left: Text Content */}
+          {/* Text Content */}
           <div className="hero-content">
             <div className="hero-badge animate-on-scroll">
               <span className="badge-dot"></span>
