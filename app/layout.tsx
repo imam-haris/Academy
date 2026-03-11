@@ -13,8 +13,8 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  title: "Nexus Academy — Empowering Minds. Achieving Excellence.",
-  description: "Nexus Academy is a premier coaching institute dedicated to helping students achieve excellence in academics and competitive examinations.",
+  title: "World Touch Coaching — Empowering Minds. Achieving Excellence.",
+  description: "World Touch Coaching is a premier coaching institute dedicated to helping students achieve excellence in academics and competitive examinations.",
 };
 
 export default function RootLayout({

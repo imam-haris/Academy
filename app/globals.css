@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════
-   Nexus Academy — Premium Coaching Institute Styles
+   World Touch Coaching — Premium Coaching Institute Styles
    ═══════════════════════════════════════════════════════ */
 
 /* ─── RESET & BASE ─── */
@@ -245,6 +245,12 @@ h1, h2, h3, h4, h5 {
 .logo-icon svg {
   width: 100%;
   height: 100%;
+}
+
+.logo-img {
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
 }
 
 .nav-links {
@@ -597,6 +603,117 @@ h1, h2, h3, h4, h5 {
 
 .feature-card:hover::before {
   opacity: 1;
+}
+
+/* ─── DIRECTOR SECTION ─── */
+.director-card-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.director-card {
+  display: grid;
+  grid-template-columns: 350px 1fr;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.director-image-wrapper {
+  position: relative;
+  height: 480px;
+}
+
+.director-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+
+.director-info {
+  padding: 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.director-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  background: var(--accent-indigo);
+  color: white;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 24px;
+  width: fit-content;
+}
+
+.director-info h3 {
+  font-size: 2rem;
+  margin-bottom: 12px;
+  letter-spacing: -0.02em;
+}
+
+.director-specialty {
+  font-size: 1.2rem;
+  color: var(--accent-indigo);
+  margin-bottom: 24px;
+}
+
+.director-quote {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  font-style: italic;
+  padding-left: 20px;
+  border-left: 2px solid var(--accent-indigo);
+  margin-bottom: 32px;
+}
+
+.director-stats {
+  display: flex;
+  gap: 40px;
+}
+
+.dir-stat {
+  display: flex;
+  flex-direction: column;
+}
+
+.dir-stat span {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white;
+}
+
+.dir-stat small {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.dir-stat-divider {
+  width: 1px;
+  background: var(--border-color);
+}
+
+@media (max-width: 768px) {
+  .director-card {
+    grid-template-columns: 1fr;
+  }
+  .director-image-wrapper {
+    height: 400px;
+  }
+  .director-info {
+    padding: 32px;
+  }
 }
 
 .feature-card-large {
