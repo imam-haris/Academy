@@ -33,7 +33,7 @@ export default function Navbar() {
           <li><Link href="/success-stories" onClick={() => setIsMobileMenuOpen(false)}>Success Stories</Link></li>
           <li><Link href="/gallery" onClick={() => setIsMobileMenuOpen(false)}>Gallery</Link></li>
           <li><Link href="/contact" onClick={() => setIsMobileMenuOpen(false)}>Contact</Link></li>
-          <li><Link href="#">Student Login</Link></li>
+          <li><Link href="/login" onClick={() => setIsMobileMenuOpen(false)}>Student Login</Link></li>
         </ul>
 
         {/* <div className={`nav-actions ${isMobileMenuOpen ? "active" : ""}`}>
