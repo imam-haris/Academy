@@ -198,7 +198,7 @@ export default function LoginPage() {
                 <button className="btn-primary w-full" type="submit" disabled={loading}>
                   <span>{loading ? "Verifying..." : "Verify & Generate ID"}</span>
                 </button>
-                <button type="button" className="btn-text w-full mt-2" onClick={() => setStep("mode-select")} disabled={loading}>
+                <button type="button" className="btn-text w-full mt-3" onClick={() => setStep("mode-select")} disabled={loading}>
                   <span>← Back</span>
                 </button>
               </div>
