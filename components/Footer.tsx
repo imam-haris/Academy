@@ -14,10 +14,10 @@ export default function Footer() {
             <p>Empowering Minds. Achieving Excellence. Shaping the toppers of tomorrow.</p>
           </div>
           <div className="footer-links">
-            <h4>Programs</h4>
-            <Link href="/programs">SSC Coaching</Link>
-            <Link href="/programs">Railway Coaching</Link>
-            <Link href="/programs">Banking Coaching</Link>
+            <h4>Courses</h4>
+            <Link href="/courses">SSC Coaching</Link>
+            <Link href="/courses">Railway Coaching</Link>
+            <Link href="/courses">Banking Coaching</Link>
           </div>
           <div className="footer-links">
             <h4>Resources</h4>
@@ -38,6 +38,7 @@ export default function Footer() {
             <a href="#">Privacy</a>
             <a href="#">Terms</a>
             <a href="#">Cookies</a>
+            <Link href="/admin/login">Admin Login</Link>
           </div>
         </div>
       </div>

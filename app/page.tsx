@@ -64,12 +64,12 @@ export default function Home() {
               experienced faculty, and personalized mentorship.
             </p>
             <div className="hero-ctas animate-on-scroll">
-              <a href="#programs" className="btn-primary btn-lg">
+              <a href="/courses" className="btn-primary btn-lg">
                 Enroll Now
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
               </a>
-              <a href="/programs" className="btn-outline btn-lg">
-                Explore Programs
+              <a href="/courses" className="btn-outline btn-lg">
+                Explore Courses
               </a>
             </div>
           </div>
@@ -190,7 +190,7 @@ export default function Home() {
             <h2>Ready to start your success journey?</h2>
             <p>Join World Touch Coaching today and take the first step towards your academic goals.</p>
             <div className="cta-actions">
-              <a href="#courses" className="btn-primary btn-lg">Enroll Now</a>
+              <a href="/courses" className="btn-primary btn-lg">Enroll Now</a>
               <a href="#about" className="btn-ghost">Talk to a Counselor →</a>
             </div>
           </div>

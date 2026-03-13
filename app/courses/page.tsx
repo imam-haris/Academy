@@ -25,7 +25,7 @@ export default function Page() {
       <section className="features" id="programs">
         <div className="container">
           <div className="section-header animate-on-scroll">
-            <span className="section-tag">Our Programs</span>
+            <span className="section-tag">Our Courses</span>
             <h2 className="section-title">Specialized <span className="gradient-text">Coaching Units</span></h2>
             <p className="section-desc">Comprehensive preparation modules tailored for every academic milestone.</p>
           </div>

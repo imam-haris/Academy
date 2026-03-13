@@ -67,7 +67,7 @@ export default function Page() {
                   </div>
                   <div className="info-item">
                     <strong className="info-label">Phone</strong>
-                    <p>+91 98765 43210</p>
+                    <p>+91 9430655073</p>
                   </div>
                   <div className="info-item">
                     <strong className="info-label">Email</strong>

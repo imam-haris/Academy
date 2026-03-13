@@ -29,7 +29,7 @@ export default function Navbar() {
 
         <ul className={`nav-links ${isMobileMenuOpen ? "active" : ""}`}>
           {/* <li><Link href="/#director" onClick={() => setIsMobileMenuOpen(false)}>Director</Link></li> */}
-          <li><Link href="/programs" onClick={() => setIsMobileMenuOpen(false)}>Programs</Link></li>
+          <li><Link href="/courses" onClick={() => setIsMobileMenuOpen(false)}>Courses</Link></li>
           <li><Link href="/success-stories" onClick={() => setIsMobileMenuOpen(false)}>Success Stories</Link></li>
           <li><Link href="/gallery" onClick={() => setIsMobileMenuOpen(false)}>Gallery</Link></li>
           <li><Link href="/contact" onClick={() => setIsMobileMenuOpen(false)}>Contact</Link></li>
@@ -37,7 +37,7 @@ export default function Navbar() {
         </ul>
 
         {/* <div className={`nav-actions ${isMobileMenuOpen ? "active" : ""}`}>
-          <Link href="/programs" className="btn-primary btn-sm">Enroll Now</Link>
+          <Link href="/courses" className="btn-primary btn-sm">Enroll Now</Link>
         </div> */}
 
         <button

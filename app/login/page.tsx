@@ -32,6 +32,13 @@ export default function LoginPage() {
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    const isLoggedIn = localStorage.getItem("is_logged_in");
+    if (isLoggedIn) {
+      router.push("/dashboard");
+    }
+  }, [router]);
+
   const handleVerifyStudent = async (e: React.FormEvent) => {
     e.preventDefault();
 
