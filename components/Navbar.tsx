@@ -23,7 +23,7 @@ export default function Navbar() {
     <nav className={`navbar ${isScrolled ? "scrolled" : ""}`}>
       <div className="nav-container">
         <Link href="/" className="nav-logo">
-          <Image src="/logo-nobg.png" alt="World Touch Coaching" width={100} height={100} className="logo-img" />
+          <Image src="/logo-nobg.png" alt="World Touch Coaching" width={120} height={120} className="logo-img" />
           <span>World Touch Coaching</span>
         </Link>
 
