@@ -280,7 +280,7 @@ export default function LoginPage() {
           border: 1px solid var(--border-color);
           border-radius: var(--radius-xl);
           padding: 40px;
-          box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+          box-shadow: var(--shadow-card);
         }
 
         .login-header {
@@ -338,11 +338,11 @@ export default function LoginPage() {
 
         .form-group input {
           width: 100%;
-          background: rgba(0,0,0,0.3);
+          background: #ffffff;
           border: 1px solid var(--border-color);
           padding: 14px;
           border-radius: var(--radius-md);
-          color: white;
+          color: var(--text-primary);
           outline: none;
           transition: border-color 0.3s;
         }
@@ -376,7 +376,7 @@ export default function LoginPage() {
         }
 
         .creds-card {
-          background: rgba(255,255,255,0.05);
+          background: var(--bg-secondary);
           border: 1px dashed var(--border-color);
           padding: 24px;
           border-radius: var(--radius-md);
@@ -408,7 +408,7 @@ export default function LoginPage() {
           cursor: pointer;
         }
 
-        .btn-text:hover { color: white; }
+        .btn-text:hover { color: var(--accent-indigo); }
 
         .mt-4 { margin-top: 1rem; }
         .mt-6 { margin-top: 1.5rem; }

@@ -32,34 +32,34 @@ export default function Page() {
           <div className="testimonials-grid">
             <div className="testimonial-card animate-on-scroll">
               <div className="testimonial-stars">★★★★★</div>
-              <p>"World Touch Coaching helped me build strong fundamentals and improve my problem-solving skills. I secured AIR 542 in JEE Advanced."</p>
+              <p>"World Touch Coaching's foundation batch helped me clear my concepts thoroughly. The mock tests were exactly like the real exam. I secured AIR 42 in SSC CGL!"</p>
               <div className="testimonial-author">
-                <div className="author-avatar" style={{ background: 'linear-gradient(135deg, #6366f1, #a855f7)' }}>AJ</div>
+                <div className="author-avatar" style={{ background: 'var(--gradient-primary)' }}>AP</div>
                 <div>
-                  <strong>Aryan Jain</strong>
-                  <span>IIT Bombay Aspirant</span>
+                  <strong>Amit Prasad</strong>
+                  <span>SSC CGL Topper</span>
                 </div>
               </div>
             </div>
             <div className="testimonial-card animate-on-scroll">
               <div className="testimonial-stars">★★★★★</div>
-              <p>"The mock tests and personalized mentoring were incredibly helpful. I scored 650+ in NEET and got into my dream college."</p>
+              <p>"The BPSC Pre + Mains strategy provided by the expert mentors here made all the difference. The study material is arguably the best in the state."</p>
               <div className="testimonial-author">
-                <div className="author-avatar" style={{ background: 'linear-gradient(135deg, #06b6d4, #6366f1)' }}>SN</div>
+                <div className="author-avatar" style={{ background: 'var(--gradient-primary)' }}>SK</div>
                 <div>
-                  <strong>Sanya Nair</strong>
-                  <span>M.B.B.S Student</span>
+                  <strong>Sneha Kumari</strong>
+                  <span>Selected in BPSC</span>
                 </div>
               </div>
             </div>
             <div className="testimonial-card animate-on-scroll">
               <div className="testimonial-stars">★★★★★</div>
-              <p>"The faculty support and structured preparation made all the difference in my boards and foundation exams."</p>
+              <p>"From struggling in Quantitative Aptitude to scoring 34/35 in IBPS PO Prelims, the banking faculty here completely transformed my preparation."</p>
               <div className="testimonial-author">
-                <div className="author-avatar" style={{ background: 'linear-gradient(135deg, #f59e0b, #ef4444)' }}>RK</div>
+                <div className="author-avatar" style={{ background: 'var(--gradient-primary)' }}>RM</div>
                 <div>
-                  <strong>Rohan Kapoor</strong>
-                  <span>Olympiad Winner</span>
+                  <strong>Rahul Mishra</strong>
+                  <span>Bank PO (SBI)</span>
                 </div>
               </div>
             </div>

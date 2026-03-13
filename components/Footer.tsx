@@ -8,7 +8,7 @@ export default function Footer() {
         <div className="footer-grid">
           <div className="footer-brand">
             <Link href="/" className="nav-logo">
-              <Image src="/logo-nobg.png" alt="World Touch Coaching" width={56} height={56} className="logo-img" />
+              <Image src="/logo-nobg.png" alt="World Touch Coaching" width={64} height={64} className="logo-img" />
               <span>World Touch Coaching</span>
             </Link>
             <p>Empowering Minds. Achieving Excellence. Shaping the toppers of tomorrow.</p>

@@ -45,11 +45,14 @@ export default function DashboardPage() {
     { id: "history", name: "History", icon: "📜" },
     { id: "english", name: "English", icon: "📚" },
     { id: "polity", name: "Polity", icon: "⚖️" },
+    { id: "economy", name: "Economy", icon: "💰" },
+    { id: "current-affairs", name: "Current Affairs", icon: "📰" },
   ];
 
   // Fetched data from Supabase
   const [notesForSubject, setNotesForSubject] = useState<any[]>([]);
   const [videosForSubject, setVideosForSubject] = useState<any[]>([]);
+  const [chaptersForSubject, setChaptersForSubject] = useState<any[]>([]);
   const [noteCounts, setNoteCounts] = useState<Record<string, number>>({});
   const [videoCounts, setVideoCounts] = useState<Record<string, number>>({});
   const [loadingData, setLoadingData] = useState(false);
@@ -76,6 +79,11 @@ export default function DashboardPage() {
     if (!selectedSubject) return;
     const fetchSubjectData = async () => {
       setLoadingData(true);
+      
+      // Fetch Chapters
+      const { data: chapters } = await supabase.from("chapters").select("*").eq("subject", selectedSubject).order("created_at", { ascending: true });
+      setChaptersForSubject(chapters || []);
+
       if (activeTab === "notes") {
         const { data } = await supabase.from("notes").select("*").eq("subject", selectedSubject).order("created_at", { ascending: false });
         setNotesForSubject(data || []);
@@ -153,20 +161,53 @@ export default function DashboardPage() {
                     ) : notesForSubject.length === 0 ? (
                       <p style={{ color: 'var(--text-muted)', textAlign: 'center', padding: '40px' }}>No notes available yet for this subject.</p>
                     ) : (
-                      notesForSubject.map((note) => (
-                        <div key={note.id} className="resource-item">
-                          <div className="resource-icon">PDF</div>
-                          <div className="resource-details">
-                            <h4>{note.title}</h4>
-                            <span>Added on {new Date(note.created_at).toLocaleDateString()} • {note.file_size || "N/A"} • by {note.uploaded_by}</span>
+                      <>
+                        {/* Grouping by Chapters */}
+                        {chaptersForSubject.map((chap) => {
+                          const chapNotes = notesForSubject.filter(n => n.chapter_id === chap.id);
+                          if (chapNotes.length === 0) return null;
+                          return (
+                            <div key={chap.id} className="chapter-group">
+                              <h3 className="chapter-title">📂 {chap.name}</h3>
+                              {chapNotes.map((note) => (
+                                <div key={note.id} className="resource-item">
+                                  <div className="resource-icon">PDF</div>
+                                  <div className="resource-details">
+                                    <h4>{note.title}</h4>
+                                    <span>Added on {new Date(note.created_at).toLocaleDateString()} • {note.file_size || "N/A"} • by {note.uploaded_by}</span>
+                                  </div>
+                                  {note.file_url ? (
+                                    <a href={note.file_url} target="_blank" rel="noopener noreferrer" className="download-btn">Download</a>
+                                  ) : (
+                                    <button className="download-btn" disabled>No File</button>
+                                  )}
+                                </div>
+                              ))}
+                            </div>
+                          );
+                        })}
+
+                        {/* General Notes (no chapter) */}
+                        {notesForSubject.filter(n => !n.chapter_id).length > 0 && (
+                          <div className="chapter-group">
+                            <h3 className="chapter-title">📑 General Resources</h3>
+                            {notesForSubject.filter(n => !n.chapter_id).map((note) => (
+                              <div key={note.id} className="resource-item">
+                                <div className="resource-icon">PDF</div>
+                                <div className="resource-details">
+                                  <h4>{note.title}</h4>
+                                  <span>Added on {new Date(note.created_at).toLocaleDateString()} • {note.file_size || "N/A"} • by {note.uploaded_by}</span>
+                                </div>
+                                {note.file_url ? (
+                                  <a href={note.file_url} target="_blank" rel="noopener noreferrer" className="download-btn">Download</a>
+                                ) : (
+                                  <button className="download-btn" disabled>No File</button>
+                                )}
+                              </div>
+                            ))}
                           </div>
-                          {note.file_url ? (
-                            <a href={note.file_url} target="_blank" rel="noopener noreferrer" className="download-btn">Download</a>
-                          ) : (
-                            <button className="download-btn" disabled>No File</button>
-                          )}
-                        </div>
-                      ))
+                        )}
+                      </>
                     )}
                   </div>
                 )}
@@ -202,20 +243,53 @@ export default function DashboardPage() {
                     ) : videosForSubject.length === 0 ? (
                       <p style={{ color: 'var(--text-muted)', textAlign: 'center', padding: '40px' }}>No video lectures available yet for this subject.</p>
                     ) : (
-                      videosForSubject.map((video) => (
-                        <div key={video.id} className="resource-item">
-                          <div className="resource-icon video">▶</div>
-                          <div className="resource-details">
-                            <h4>{video.title}</h4>
-                            <span>{video.duration || "N/A"} • by {video.uploaded_by}</span>
+                      <>
+                        {/* Grouping by Chapters */}
+                        {chaptersForSubject.map((chap) => {
+                          const chapVideos = videosForSubject.filter(v => v.chapter_id === chap.id);
+                          if (chapVideos.length === 0) return null;
+                          return (
+                            <div key={chap.id} className="chapter-group">
+                              <h3 className="chapter-title">🎥 {chap.name}</h3>
+                              {chapVideos.map((video) => (
+                                <div key={video.id} className="resource-item">
+                                  <div className="resource-icon video">▶</div>
+                                  <div className="resource-details">
+                                    <h4>{video.title}</h4>
+                                    <span>{video.duration || "N/A"} • by {video.uploaded_by}</span>
+                                  </div>
+                                  {video.video_url ? (
+                                    <a href={video.video_url} target="_blank" rel="noopener noreferrer" className="watch-btn">Watch Now</a>
+                                  ) : (
+                                    <button className="watch-btn" disabled>No Link</button>
+                                  )}
+                                </div>
+                              ))}
+                            </div>
+                          );
+                        })}
+
+                        {/* General Videos (no chapter) */}
+                        {videosForSubject.filter(v => !v.chapter_id).length > 0 && (
+                          <div className="chapter-group">
+                            <h3 className="chapter-title">📽️ General Lectures</h3>
+                            {videosForSubject.filter(v => !v.chapter_id).map((video) => (
+                              <div key={video.id} className="resource-item">
+                                <div className="resource-icon video">▶</div>
+                                <div className="resource-details">
+                                  <h4>{video.title}</h4>
+                                  <span>{video.duration || "N/A"} • by {video.uploaded_by}</span>
+                                </div>
+                                {video.video_url ? (
+                                  <a href={video.video_url} target="_blank" rel="noopener noreferrer" className="watch-btn">Watch Now</a>
+                                ) : (
+                                  <button className="watch-btn" disabled>No Link</button>
+                                )}
+                              </div>
+                            ))}
                           </div>
-                          {video.video_url ? (
-                            <a href={video.video_url} target="_blank" rel="noopener noreferrer" className="watch-btn">Watch Now</a>
-                          ) : (
-                            <button className="watch-btn" disabled>No Link</button>
-                          )}
-                        </div>
-                      ))
+                        )}
+                      </>
                     )}
                   </div>
                 )}
@@ -232,7 +306,7 @@ export default function DashboardPage() {
           grid-template-columns: 280px 1fr;
           min-height: 100vh;
           padding-top: 80px;
-          background: #050505;
+          background: var(--bg-primary);
         }
 
         .dashboard-sidebar {
@@ -248,7 +322,7 @@ export default function DashboardPage() {
 
         .sidebar-header h3 {
           font-size: 1.2rem;
-          color: white;
+          color: var(--text-primary);
           border-left: 3px solid var(--accent-indigo);
           padding-left: 12px;
         }
@@ -272,22 +346,22 @@ export default function DashboardPage() {
         }
 
         .sidebar-nav button:hover {
-          background: rgba(255,255,255,0.05);
-          color: white;
+          background: rgba(99, 102, 241, 0.05);
+          color: var(--accent-indigo);
         }
 
         .sidebar-nav button.active {
-          background: var(--accent-indigo);
+          background: var(--gradient-primary);
           color: white;
         }
 
         .logout-btn {
           margin-top: 40px;
-          color: #ef4444 !important;
+          color: #dc2626 !important;
         }
 
         .logout-btn:hover {
-          background: rgba(239, 68, 68, 0.1) !important;
+          background: rgba(220, 38, 38, 0.05) !important;
         }
 
         .dashboard-content {
@@ -335,15 +409,15 @@ export default function DashboardPage() {
         }
 
         .resource-icon.video {
-          background: rgba(236, 72, 153, 0.1);
-          color: #ec4899;
+          background: rgba(59, 130, 246, 0.1);
+          color: var(--accent-blue);
           font-size: 1.2rem;
         }
 
         .resource-details h4 {
           font-size: 1.1rem;
           margin-bottom: 6px;
-          color: white;
+          color: var(--text-primary);
         }
 
         .resource-details span {
@@ -364,8 +438,8 @@ export default function DashboardPage() {
         }
 
         .watch-btn {
-          border-color: #ec4899;
-          color: #ec4899;
+          border-color: var(--accent-blue);
+          color: var(--accent-blue);
         }
 
         .download-btn:hover {
@@ -374,7 +448,7 @@ export default function DashboardPage() {
         }
 
         .watch-btn:hover {
-          background: #ec4899;
+          background: var(--accent-blue);
           color: white;
         }
 
@@ -385,20 +459,21 @@ export default function DashboardPage() {
         }
 
         .subject-card {
-          background: rgba(255,255,255,0.03);
+          background: #ffffff;
           border: 1px solid var(--border-color);
           border-radius: var(--radius-lg);
           padding: 32px 24px;
           text-align: center;
           cursor: pointer;
           transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
         }
 
         .subject-card:hover {
-          background: rgba(255,255,255,0.06);
+          background: #ffffff;
           border-color: var(--accent-indigo);
           transform: translateY(-4px);
-          box-shadow: 0 10px 30px -10px rgba(99, 102, 241, 0.2);
+          box-shadow: 0 10px 30px -10px rgba(99, 102, 241, 0.15);
         }
 
         .subject-icon {
@@ -409,7 +484,7 @@ export default function DashboardPage() {
         .subject-card h4 {
           font-size: 1.25rem;
           margin-bottom: 8px;
-          color: white;
+          color: var(--text-primary);
         }
 
         .subject-card span {
@@ -417,16 +492,22 @@ export default function DashboardPage() {
           font-size: 0.9rem;
         }
 
-        .btn-text {
-          background: none;
-          border: none;
-          color: var(--accent-indigo);
-          font-size: 1rem;
-          cursor: pointer;
-          font-weight: 500;
+        .btn-text:hover { color: white; }
+
+        .chapter-group {
+          margin-bottom: 40px;
         }
 
-        .btn-text:hover { color: white; }
+        .chapter-title {
+          font-size: 1.4rem;
+          color: var(--text-primary);
+          margin-bottom: 20px;
+          padding-bottom: 10px;
+          border-bottom: 1px solid var(--border-color);
+          display: flex;
+          align-items: center;
+          gap: 12px;
+        }
 
         @media (max-width: 768px) {
           .dashboard-container {

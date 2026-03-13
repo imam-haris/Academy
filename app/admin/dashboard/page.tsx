@@ -5,12 +5,20 @@ import Footer from "../../../components/Footer";
 import { useRouter } from "next/navigation";
 import { supabase } from "../../../lib/supabase";
 
-const SUBJECTS = ["maths", "geography", "history", "english", "polity"];
+const SUBJECTS = ["maths", "geography", "history", "english", "polity", "economy", "current-affairs"];
+
+interface Chapter {
+  id: number;
+  name: string;
+  subject: string;
+  created_at: string;
+}
 
 interface Note {
   id: number;
   title: string;
   subject: string;
+  chapter_id?: number | null;
   file_url: string;
   file_size: string;
   uploaded_by: string;
@@ -21,6 +29,7 @@ interface Video {
   id: number;
   title: string;
   subject: string;
+  chapter_id?: number | null;
   video_url: string;
   duration: string;
   uploaded_by: string;
@@ -36,6 +45,7 @@ export default function AdminDashboardPage() {
   // Notes form states
   const [noteTitle, setNoteTitle] = useState("");
   const [noteSubject, setNoteSubject] = useState("maths");
+  const [noteChapterId, setNoteChapterId] = useState<string>("");
   const [noteFileUrl, setNoteFileUrl] = useState("");
   const [noteFileSize, setNoteFileSize] = useState("");
   const [noteFile, setNoteFile] = useState<File | null>(null);
@@ -43,9 +53,14 @@ export default function AdminDashboardPage() {
   // Video form states
   const [videoTitle, setVideoTitle] = useState("");
   const [videoSubject, setVideoSubject] = useState("maths");
+  const [videoChapterId, setVideoChapterId] = useState<string>("");
   const [videoUrl, setVideoUrl] = useState("");
   const [videoDuration, setVideoDuration] = useState("");
   const [videoFile, setVideoFile] = useState<File | null>(null);
+
+  // Chapter form states
+  const [newChapterName, setNewChapterName] = useState("");
+  const [newChapterSubject, setNewChapterSubject] = useState("maths");
 
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
@@ -55,6 +70,7 @@ export default function AdminDashboardPage() {
   // Existing content lists
   const [notesList, setNotesList] = useState<Note[]>([]);
   const [videosList, setVideosList] = useState<Video[]>([]);
+  const [chaptersList, setChaptersList] = useState<Chapter[]>([]);
 
   useEffect(() => {
     const admin = localStorage.getItem("admin_logged_in");
@@ -69,7 +85,16 @@ export default function AdminDashboardPage() {
   useEffect(() => {
     if (activeTab === "manage-notes") fetchNotes();
     if (activeTab === "manage-videos") fetchVideos();
+    if (activeTab === "manage-chapters" || activeTab === "upload-notes" || activeTab === "upload-videos") fetchChapters();
   }, [activeTab]);
+
+  const fetchChapters = async () => {
+    const { data } = await supabase
+      .from("chapters")
+      .select("*")
+      .order("created_at", { ascending: false });
+    if (data) setChaptersList(data);
+  };
 
   const fetchNotes = async () => {
     const { data } = await supabase
@@ -131,6 +156,7 @@ export default function AdminDashboardPage() {
     const { error: sbError } = await supabase.from("notes").insert({
       title: noteTitle,
       subject: noteSubject,
+      chapter_id: noteChapterId ? parseInt(noteChapterId) : null,
       file_url: fileUrl || null,
       file_size: fileSize || null,
       uploaded_by: adminName,
@@ -184,6 +210,7 @@ export default function AdminDashboardPage() {
     const { error: sbError } = await supabase.from("videos").insert({
       title: videoTitle,
       subject: videoSubject,
+      chapter_id: videoChapterId ? parseInt(videoChapterId) : null,
       video_url: vUrl || null,
       duration: videoDuration || null,
       uploaded_by: adminName,
@@ -209,6 +236,32 @@ export default function AdminDashboardPage() {
   const handleDeleteVideo = async (id: number) => {
     await supabase.from("videos").delete().eq("id", id);
     fetchVideos();
+  };
+
+  const handleAddChapter = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!newChapterName) {
+      setError("Chapter name is required.");
+      return;
+    }
+    setLoading(true);
+    const { error: sbError } = await supabase.from("chapters").insert({
+      name: newChapterName,
+      subject: newChapterSubject
+    });
+    setLoading(false);
+    if (sbError) setError(sbError.message);
+    else {
+      setMessage("Chapter created successfully!");
+      setNewChapterName("");
+      fetchChapters();
+    }
+  };
+
+  const handleDeleteChapter = async (id: number) => {
+    const { error: sbError } = await supabase.from("chapters").delete().eq("id", id);
+    if (sbError) setError("Cannot delete chapter. It might have linked notes/videos.");
+    else fetchChapters();
   };
 
   const handleLogout = () => {
@@ -241,6 +294,9 @@ export default function AdminDashboardPage() {
             <button className={activeTab === "manage-videos" ? "active" : ""} onClick={() => { setActiveTab("manage-videos"); setMessage(""); setError(""); }}>
               📺 Manage Videos
             </button>
+            <button className={activeTab === "manage-chapters" ? "active" : ""} onClick={() => { setActiveTab("manage-chapters"); setMessage(""); setError(""); }}>
+              📁 Manage Chapters
+            </button>
             <button onClick={handleLogout} className="admin-logout-btn">
               🚪 Logout
             </button>
@@ -267,8 +323,17 @@ export default function AdminDashboardPage() {
                 </div>
                 <div className="form-group">
                   <label>Subject *</label>
-                  <select value={noteSubject} onChange={(e) => setNoteSubject(e.target.value)}>
+                  <select value={noteSubject} onChange={(e) => { setNoteSubject(e.target.value); setNoteChapterId(""); }}>
                     {SUBJECTS.map(s => <option key={s} value={s}>{s.charAt(0).toUpperCase() + s.slice(1)}</option>)}
+                  </select>
+                </div>
+                <div className="form-group">
+                  <label>Chapter (Optional)</label>
+                  <select value={noteChapterId} onChange={(e) => setNoteChapterId(e.target.value)}>
+                    <option value="">-- Select Chapter --</option>
+                    {chaptersList.filter(c => c.subject === noteSubject).map(c => (
+                      <option key={c.id} value={c.id}>{c.name}</option>
+                    ))}
                   </select>
                 </div>
               </div>
@@ -330,8 +395,17 @@ export default function AdminDashboardPage() {
                 </div>
                 <div className="form-group">
                   <label>Subject *</label>
-                  <select value={videoSubject} onChange={(e) => setVideoSubject(e.target.value)}>
+                  <select value={videoSubject} onChange={(e) => { setVideoSubject(e.target.value); setVideoChapterId(""); }}>
                     {SUBJECTS.map(s => <option key={s} value={s}>{s.charAt(0).toUpperCase() + s.slice(1)}</option>)}
+                  </select>
+                </div>
+                <div className="form-group">
+                  <label>Chapter (Optional)</label>
+                  <select value={videoChapterId} onChange={(e) => setVideoChapterId(e.target.value)}>
+                    <option value="">-- Select Chapter --</option>
+                    {chaptersList.filter(c => c.subject === videoSubject).map(c => (
+                      <option key={c.id} value={c.id}>{c.name}</option>
+                    ))}
                   </select>
                 </div>
               </div>
@@ -423,6 +497,46 @@ export default function AdminDashboardPage() {
               )}
             </div>
           )}
+
+          {/* ===== MANAGE CHAPTERS ===== */}
+          {activeTab === "manage-chapters" && (
+            <div className="manage-section">
+              <form onSubmit={handleAddChapter} className="admin-form mb-8" style={{ marginBottom: "30px" }}>
+                <h3>Create New Chapter</h3>
+                <div className="form-grid">
+                  <div className="form-group">
+                    <label>Chapter Name *</label>
+                    <input type="text" placeholder="e.g. Chapter 1: Introduction" value={newChapterName} onChange={(e) => setNewChapterName(e.target.value)} />
+                  </div>
+                  <div className="form-group">
+                    <label>Subject *</label>
+                    <select value={newChapterSubject} onChange={(e) => setNewChapterSubject(e.target.value)}>
+                      {SUBJECTS.map(s => <option key={s} value={s}>{s.charAt(0).toUpperCase() + s.slice(1)}</option>)}
+                    </select>
+                  </div>
+                </div>
+                <button className="btn-primary" type="submit" disabled={loading}>
+                  <span>{loading ? "Creating..." : "Create Chapter"}</span>
+                </button>
+              </form>
+
+              <h3>All Chapters ({chaptersList.length})</h3>
+              {chaptersList.length === 0 ? (
+                <p className="empty-msg">No chapters created yet.</p>
+              ) : (
+                chaptersList.map((chap) => (
+                  <div key={chap.id} className="manage-item">
+                    <div className="manage-icon">📁</div>
+                    <div className="manage-details">
+                      <h4>{chap.name}</h4>
+                      <span>{chap.subject.charAt(0).toUpperCase() + chap.subject.slice(1)}</span>
+                    </div>
+                    <button className="delete-btn" onClick={() => handleDeleteChapter(chap.id)}>Delete</button>
+                  </div>
+                ))
+              )}
+            </div>
+          )}
         </section>
       </div>
       <Footer />
@@ -430,10 +544,10 @@ export default function AdminDashboardPage() {
       <style jsx>{`
         .admin-container {
           display: grid;
-          grid-template-columns: 300px 1fr;
+          grid-template_columns: 300px 1fr;
           min-height: 100vh;
           padding-top: 80px;
-          background: #050505;
+          background: var(--bg-primary);
         }
         .admin-sidebar {
           background: var(--bg-card);
@@ -458,13 +572,13 @@ export default function AdminDashboardPage() {
           margin: 0 auto 16px;
         }
         .admin-profile h4 {
-          color: white;
+          color: var(--text-primary);
           font-size: 1.1rem;
           margin-bottom: 8px;
         }
         .admin-role-badge {
-          background: rgba(239, 68, 68, 0.15);
-          color: #ef4444;
+          background: rgba(99, 102, 241, 0.1);
+          color: var(--accent-indigo);
           padding: 4px 12px;
           border-radius: 20px;
           font-size: 0.8rem;
@@ -489,19 +603,19 @@ export default function AdminDashboardPage() {
           transition: all 0.3s;
         }
         .admin-nav button:hover {
-          background: rgba(255,255,255,0.05);
-          color: white;
+          background: rgba(99, 102, 241, 0.05);
+          color: var(--accent-indigo);
         }
         .admin-nav button.active {
-          background: linear-gradient(135deg, #ef4444, #f97316);
+          background: var(--gradient-primary);
           color: white;
         }
         .admin-logout-btn {
           margin-top: 30px;
-          color: #ef4444 !important;
+          color: #dc2626 !important;
         }
         .admin-logout-btn:hover {
-          background: rgba(239, 68, 68, 0.1) !important;
+          background: rgba(220, 38, 38, 0.05) !important;
         }
         .admin-content {
           padding: 50px;
@@ -513,7 +627,7 @@ export default function AdminDashboardPage() {
         .admin-header h2 {
           font-size: 2rem;
           margin-bottom: 8px;
-          color: white;
+          color: var(--text-primary);
         }
         .admin-header p {
           color: var(--text-muted);
@@ -543,7 +657,7 @@ export default function AdminDashboardPage() {
           padding: 40px;
         }
         .admin-form h3 {
-          color: white;
+          color: var(--text-primary);
           font-size: 1.4rem;
           margin-bottom: 28px;
         }
@@ -564,17 +678,18 @@ export default function AdminDashboardPage() {
         .admin-form .form-group select {
           width: 100%;
           padding: 12px 16px;
-          background: rgba(255,255,255,0.05);
+          background: #ffffff;
           border: 1px solid var(--border-color);
           border-radius: var(--radius-md);
-          color: white;
+          color: var(--text-primary);
           font-size: 0.95rem;
           outline: none;
           transition: border-color 0.3s;
         }
         .admin-form .form-group input:focus,
         .admin-form .form-group select:focus {
-          border-color: #ef4444;
+          border-color: var(--accent-indigo);
+          box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
         }
         .admin-form .form-group select {
           cursor: pointer;
@@ -584,7 +699,7 @@ export default function AdminDashboardPage() {
           color: white;
         }
         .manage-section h3 {
-          color: white;
+          color: var(--text-primary);
           font-size: 1.3rem;
           margin-bottom: 24px;
         }
@@ -599,7 +714,8 @@ export default function AdminDashboardPage() {
           transition: all 0.3s;
         }
         .manage-item:hover {
-          border-color: #ef4444;
+          border-color: var(--accent-indigo);
+          box-shadow: var(--shadow-card);
         }
         .manage-icon {
           width: 48px;
@@ -624,7 +740,7 @@ export default function AdminDashboardPage() {
           flex: 1;
         }
         .manage-details h4 {
-          color: white;
+          color: var(--text-primary);
           font-size: 1rem;
           margin-bottom: 4px;
         }
@@ -687,7 +803,7 @@ export default function AdminDashboardPage() {
           font-size: 2.5rem;
         }
         .file-placeholder p {
-          color: white;
+          color: var(--text-primary);
           font-weight: 500;
         }
         .file-hint {
@@ -704,7 +820,7 @@ export default function AdminDashboardPage() {
           font-size: 2rem;
         }
         .file-name {
-          color: white;
+          color: var(--text-primary);
           font-weight: 500;
           font-size: 0.95rem;
         }
@@ -757,52 +873,98 @@ export default function AdminDashboardPage() {
         }
         @media (max-width: 768px) {
           .admin-container {
-            grid-template-columns: 1fr;
+            display: block;
+            padding-top: 60px;
+            overflow-x: hidden;
+            width: 100%;
           }
           .admin-sidebar {
             border-right: none;
             border-bottom: 1px solid var(--border-color);
-            padding: 20px;
+            padding: 10px 12px;
+            position: sticky;
+            top: 60px;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
           }
           .admin-profile {
-            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
           }
           .admin-avatar {
-            width: 40px;
-            height: 40px;
-            font-size: 1rem;
-            margin-bottom: 8px;
+            width: 32px;
+            height: 32px;
+            font-size: 0.8rem;
+          }
+          .admin-profile h4 {
+            font-size: 0.9rem;
+          }
+          .admin-role-badge {
+            font-size: 0.6rem;
+            padding: 2px 6px;
           }
           .admin-nav {
             flex-direction: row;
             overflow-x: auto;
-            gap: 8px;
+            gap: 6px;
+            padding-bottom: 4px;
+            -webkit-overflow-scrolling: touch;
+          }
+          .admin-nav::-webkit-scrollbar {
+            display: none;
           }
           .admin-nav button {
-            white-space: nowrap;
-            padding: 10px 14px;
-            font-size: 0.85rem;
+            padding: 7px 12px;
+            font-size: 0.75rem;
           }
           .admin-logout-btn {
-            margin-top: 0;
+            padding: 7px 10px !important;
             margin-left: auto;
           }
           .admin-content {
-            padding: 24px 16px;
+            padding: 16px 10px;
+            width: 100%;
+          }
+          .admin-header {
+            margin-bottom: 20px;
+            text-align: center;
+          }
+          .admin-header h2 {
+            font-size: 1.3rem;
+          }
+          .admin-header p {
+            font-size: 0.8rem;
+          }
+          .admin-form {
+            padding: 18px 12px;
+            border-radius: var(--radius-md);
+          }
+          .admin-form h3 {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
           }
           .form-grid {
-            grid-template-columns: 1fr;
-          }
-          .manage-item {
-            flex-direction: column;
-            text-align: center;
             gap: 12px;
+            margin-bottom: 20px;
           }
-          .manage-icon {
-            margin-right: 0;
+          .file-drop-zone {
+            padding: 15px 10px;
           }
-          .delete-btn {
-            width: 100%;
+          .file-selected {
+            flex-direction: column;
+            align-items: flex-start;
+          }
+          .file-remove {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+          }
+          .or-divider {
+            margin: 15px 0;
+            font-size: 0.75rem;
           }
         }
       `}</style>

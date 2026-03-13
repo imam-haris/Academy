@@ -19,9 +19,9 @@ export default function GalleryPage() {
   }, []);
 
   const galleryImages = [
-    { src: "/gallery-1.jpg", alt: "Classroom Session 1" },
-    { src: "/gallery-2.jpg", alt: "Classroom Session 2" },
-    { src: "/gallery-3.jpg", alt: "Classroom Session 3" },
+    { src: "/gallery-1.jpg", alt: "Modern Classroom Setting" },
+    { src: "/gallery-2.jpg", alt: "Faculty Discussion Room" },
+    { src: "/gallery-3.jpg", alt: "Main Learning Hall" },
   ];
 
   return (
@@ -51,6 +51,32 @@ export default function GalleryPage() {
                 </div>
               </div>
             ))}
+
+            {/* Video Card */}
+            <div className="gallery-card animate-on-scroll">
+              <div className="gallery-img-wrapper">
+                <video
+                  src="/gallery.MP4"
+                  className="gallery-img"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  onMouseEnter={(e) => {
+                    const v = e.currentTarget;
+                    v.muted = false;
+                  }}
+                  onMouseLeave={(e) => {
+                    const v = e.currentTarget;
+                    v.muted = true;
+                  }}
+                />
+                <div className="gallery-overlay">
+                  <span>🎬 Campus Tour</span>
+                </div>
+                <div className="video-play-badge">▶ VIDEO</div>
+              </div>
+            </div>
           </div>
         </section>
       </div>
@@ -58,8 +84,9 @@ export default function GalleryPage() {
 
       <style jsx>{`
         .gallery-grid {
-          columns: 3 300px;
-          column-gap: 24px;
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 24px;
           margin-top: 40px;
         }
 
@@ -82,11 +109,14 @@ export default function GalleryPage() {
         .gallery-img-wrapper {
           position: relative;
           width: 100%;
+          aspect-ratio: 4 / 3;
+          overflow: hidden;
         }
 
         .gallery-img {
           width: 100%;
-          height: auto;
+          height: 100%;
+          object-fit: cover;
           display: block;
           transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
@@ -120,6 +150,20 @@ export default function GalleryPage() {
           .gallery-grid {
             grid-template-columns: 1fr;
           }
+        }
+
+        .video-play-badge {
+          position: absolute;
+          top: 12px;
+          right: 12px;
+          background: rgba(99, 102, 241, 0.9);
+          color: white;
+          font-size: 0.7rem;
+          font-weight: 700;
+          letter-spacing: 0.08em;
+          padding: 4px 10px;
+          border-radius: 20px;
+          backdrop-filter: blur(4px);
         }
       `}</style>
     </main>

@@ -82,6 +82,91 @@ export default function Home() {
 
 
 
+      {/* ═══════════════════ ANNOUNCEMENT MARQUEE STRIP ═══════════════════ */}
+      <div className="announcement-strip">
+        <div className="announcement-marquee-wrap">
+          <div className="announcement-marquee">
+            <span>🎯 Target Batch / Crash Course for All Exams &nbsp;@&nbsp;<strong>₹6,000</strong></span>
+            <span className="sep">•</span>
+            <span>📝 Mock Test Series for All Exams &nbsp;@&nbsp;<strong>₹3,000</strong></span>
+            <span className="sep">•</span>
+            <span>📖 Pick Any Subject Notes &nbsp;@&nbsp;<strong>₹99</strong></span>
+            <span className="sep">•</span>
+            <span>🎯 Target Batch / Crash Course for All Exams &nbsp;@&nbsp;<strong>₹6,000</strong></span>
+            <span className="sep">•</span>
+            <span>📝 Mock Test Series for All Exams &nbsp;@&nbsp;<strong>₹3,000</strong></span>
+            <span className="sep">•</span>
+            <span>📖 Pick Any Subject Notes &nbsp;@&nbsp;<strong>₹99</strong></span>
+          </div>
+        </div>
+      </div>
+
+      {/* ═══════════════ SPECIAL OFFERS ═══════════════ */}
+      <section className="offers-section" id="offers">
+        <div className="container">
+          <div className="section-header animate-on-scroll">
+            <span className="section-tag" style={{ background: 'rgba(234,88,12,0.08)', borderColor: 'rgba(234,88,12,0.25)', color: '#ea580c' }}>Not Enrolled Yet?</span>
+            <h2 className="section-title">Special Offers for <span className="gradient-text">Every Aspirant</span></h2>
+            <p className="section-desc">You don{"'"}t need to join a full batch to benefit from World Touch Coaching. Pick exactly what you need.</p>
+          </div>
+
+          <div className="offers-grid">
+            <div className="offer-card animate-on-scroll">
+              <div className="offer-icon-wrap"><span className="offer-icon">🎯</span></div>
+              <div className="offer-badge" style={{ background: '#6366f1' }}>Most Popular</div>
+              <h3>Target Batch / Crash Course</h3>
+              <p>Intensive, fast-tracked preparation for all government exams — SSC, Railway, BPSC, Banking &amp; more.</p>
+              <div className="offer-price">
+                <span className="offer-amount">₹6,000</span>
+                <span className="offer-period">/ Full Course</span>
+              </div>
+              <ul className="offer-features">
+                <li>✓ Covers all major govt. exams</li>
+                <li>✓ Expert faculty guidance</li>
+                <li>✓ Practice sheets included</li>
+                <li>✓ Doubt clearing sessions</li>
+              </ul>
+              <a href="/contact" className="btn-primary btn-block">Enquire Now</a>
+            </div>
+
+            <div className="offer-card animate-on-scroll">
+              <div className="offer-icon-wrap" style={{ background: 'rgba(59,130,246,0.08)' }}><span className="offer-icon">📝</span></div>
+              <h3>Mock Test Series</h3>
+              <p>Sharpen your speed and accuracy with full-length mock tests designed exactly like the real exams.</p>
+              <div className="offer-price">
+                <span className="offer-amount">₹3,000</span>
+                <span className="offer-period">/ Full Series</span>
+              </div>
+              <ul className="offer-features">
+                <li>✓ All competitive exams covered</li>
+                <li>✓ Detailed performance analysis</li>
+                <li>✓ Timer-based practice</li>
+                <li>✓ Rank benchmarking</li>
+              </ul>
+              <a href="/contact" className="btn-primary btn-block" style={{ background: 'linear-gradient(135deg,#3b82f6,#6366f1)' }}>Enquire Now</a>
+            </div>
+
+            <div className="offer-card animate-on-scroll">
+              <div className="offer-icon-wrap" style={{ background: 'rgba(16,185,129,0.08)' }}><span className="offer-icon">📖</span></div>
+              <div className="offer-badge" style={{ background: '#10b981' }}>Best Value</div>
+              <h3>Subject-Wise Notes</h3>
+              <p>Handcrafted, exam-focused notes for individual subjects. Perfect for self-study students.</p>
+              <div className="offer-price">
+                <span className="offer-amount">₹99</span>
+                <span className="offer-period">/ per subject</span>
+              </div>
+              <ul className="offer-features">
+                <li>✓ Maths, History, Polity &amp; more</li>
+                <li>✓ Concise &amp; exam-ready</li>
+                <li>✓ Instant digital delivery</li>
+                <li>✓ Printed copy available</li>
+              </ul>
+              <a href="/contact" className="btn-primary btn-block" style={{ background: 'linear-gradient(135deg,#10b981,#3b82f6)' }}>Get Notes</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ═══════════════════ ABOUT SECTION ═══════════════════ */}
       <section className="features" id="about" style={{ paddingBottom: '0' }}>
         <div className="container">
@@ -191,7 +276,7 @@ export default function Home() {
             <p>Join World Touch Coaching today and take the first step towards your academic goals.</p>
             <div className="cta-actions">
               <a href="/courses" className="btn-primary btn-lg">Enroll Now</a>
-              <a href="#about" className="btn-ghost">Talk to a Counselor →</a>
+              <a href="/contact" className="btn-ghost">Talk to a Counselor →</a>
             </div>
           </div>
         </div>

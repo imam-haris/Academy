@@ -111,7 +111,7 @@ export default function AdminLoginPage() {
           align-items: center;
           justify-content: center;
           padding: 120px 20px 60px;
-          background: radial-gradient(circle at top left, rgba(239, 68, 68, 0.06), transparent 50%);
+          background: radial-gradient(circle at top left, rgba(99, 102, 241, 0.06), transparent 50%);
         }
 
         .admin-login-box {
@@ -121,7 +121,7 @@ export default function AdminLoginPage() {
           border: 1px solid var(--border-color);
           border-radius: var(--radius-xl);
           padding: 48px 40px;
-          box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+          box-shadow: var(--shadow-card);
         }
 
         .admin-login-header {
@@ -131,8 +131,8 @@ export default function AdminLoginPage() {
 
         .admin-tag {
           display: inline-block;
-          background: rgba(239, 68, 68, 0.12);
-          color: #f87171;
+          background: rgba(99, 102, 241, 0.12);
+          color: var(--accent-indigo);
           padding: 6px 16px;
           border-radius: 20px;
           font-size: 0.85rem;
@@ -142,12 +142,12 @@ export default function AdminLoginPage() {
 
         .admin-login-header h2 {
           font-size: 1.8rem;
-          color: white;
+          color: var(--text-primary);
           margin-bottom: 10px;
         }
 
         .admin-gradient {
-          background: linear-gradient(135deg, #ef4444, #f97316);
+          background: var(--gradient-primary);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
         }
@@ -189,28 +189,28 @@ export default function AdminLoginPage() {
         .admin-form-group input {
           width: 100%;
           padding: 14px 18px;
-          background: rgba(255,255,255,0.05);
+          background: #ffffff;
           border: 1px solid var(--border-color);
           border-radius: var(--radius-md);
-          color: white;
+          color: var(--text-primary);
           font-size: 1rem;
           outline: none;
           transition: border-color 0.3s;
         }
 
         .admin-form-group input:focus {
-          border-color: #ef4444;
-          box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+          border-color: var(--accent-indigo);
+          box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
         }
 
         .admin-form-group input::placeholder {
-          color: rgba(255,255,255,0.25);
+          color: var(--text-muted);
         }
 
         .admin-login-btn {
           width: 100%;
           padding: 16px;
-          background: linear-gradient(135deg, #ef4444, #f97316);
+          background: var(--gradient-primary);
           border: none;
           border-radius: var(--radius-md);
           color: white;
@@ -223,7 +223,7 @@ export default function AdminLoginPage() {
 
         .admin-login-btn:hover {
           transform: translateY(-2px);
-          box-shadow: 0 8px 24px rgba(239, 68, 68, 0.3);
+          box-shadow: 0 8px 24px rgba(99, 102, 241, 0.3);
         }
 
         .admin-login-btn:disabled {
