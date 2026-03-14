@@ -49,33 +49,57 @@ export default function Home() {
       {/* ═══════════════════ HERO ═══════════════════ */}
       <section className="hero" id="hero">
         <div className="hero-inner">
-          {/* Text Content */}
           <div className="hero-content">
             <div className="hero-badge animate-on-scroll">
               <span className="badge-dot"></span>
-              Empowering Minds. Achieving Excellence.
+              A Premier Government Exam Institute
             </div>
+            
             <h1 className="hero-title animate-on-scroll">
               World Touch <br />
               <span className="gradient-text">Coaching</span>
             </h1>
-            <p className="hero-subtitle animate-on-scroll">
-              <strong>Premium Training for SSC, Railway, BPSC, Bihar Police, Banking, CTET/STET & UGC NET.</strong><br />
-              Miscot lane, 2nd floor, Sinha complex, Near Jubba Sahni Park, Mithanpura, Muzaffarpur.<br />
-              <span style={{ display: 'block', marginTop: '15px', fontStyle: 'italic', color: 'var(--accent-indigo)' }}>
+
+            <div className="hero-quote-wrap animate-on-scroll">
+              <span className="quote-icon">✦</span>
+              <p className="hero-quote">
                 "A beacon of excellence where aspirations meet structured guidance and proven results."
-              </span>
-            </p>
+              </p>
+              <span className="quote-icon">✦</span>
+            </div>
+
+            <div className="hero-info-grid animate-on-scroll">
+              <div className="hero-info-card">
+                <div className="info-card-icon">🎯</div>
+                <div className="info-card-content">
+                  <h4>Target Exams</h4>
+                  <p>SSC • Railway • BPSC • Bihar Police • Banking • CTET/STET • UGC NET</p>
+                </div>
+              </div>
+              <div className="hero-info-card">
+                <div className="info-card-icon">📍</div>
+                <div className="info-card-content">
+                  <h4>Our Campus</h4>
+                  <p>Miscot lane, 2nd floor, Sinha complex, Near Jubba Sahni Park, Muzaffarpur</p>
+                </div>
+              </div>
+            </div>
+
             <div className="hero-ctas animate-on-scroll">
               <a href="/courses" className="btn-primary btn-lg">
-                Enroll Now
+                View All Courses
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
               </a>
-              <a href="/courses" className="btn-outline btn-lg">
-                Explore Courses
+              <a href="/contact" className="btn-outline btn-lg">
+                Reach Us
               </a>
             </div>
           </div>
+        </div>
+
+        <div className="hero-decoration">
+          <div className="decoration-circle"></div>
+          <div className="decoration-grid-pattern"></div>
         </div>
 
         <div className="scroll-indicator">
