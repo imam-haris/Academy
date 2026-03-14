@@ -56,12 +56,15 @@ export default function Home() {
               Empowering Minds. Achieving Excellence.
             </div>
             <h1 className="hero-title animate-on-scroll">
-              Achieve Academic Excellence<br />
-              <span className="gradient-text">with Expert Coaching</span>
+              World Touch <br />
+              <span className="gradient-text">Coaching</span>
             </h1>
             <p className="hero-subtitle animate-on-scroll">
-              Join thousands of students preparing for competitive exams with structured learning,
-              experienced faculty, and personalized mentorship.
+              <strong>Premium Training for SSC, Railway, BPSC, Bihar Police, Banking, CTET/STET & UGC NET.</strong><br />
+              Miscot lane, 2nd floor, Sinha complex, Near Jubba Sahni Park, Mithanpura, Muzaffarpur.<br />
+              <span style={{ display: 'block', marginTop: '15px', fontStyle: 'italic', color: 'var(--accent-indigo)' }}>
+                "A beacon of excellence where aspirations meet structured guidance and proven results."
+              </span>
             </p>
             <div className="hero-ctas animate-on-scroll">
               <a href="/courses" className="btn-primary btn-lg">
