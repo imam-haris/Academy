@@ -32,30 +32,37 @@ export default function Page() {
             <div className="contact-grid">
               <div className="feature-card animate-on-scroll">
                 <h3>Send us a Message</h3>
-                <form className="contact-form">
+                <form
+                  action="https://formspree.io/f/xaqpdyjq"
+                  method="POST"
+                  className="contact-form">
+
                   <div className="form-group">
-                    <input type="text" placeholder="Your Name" />
+                    <input type="text" name="name" placeholder="Your Name" required />
                   </div>
                   <div className="form-group">
-                    <input type="email" placeholder="Your Email" />
+                    <input type="email" name="email" placeholder="Your Email" required />
                   </div>
                   <div className="form-group">
-                    <select>
-                      <option>SSC Preparation</option>
-                      <option>Railway Preparation</option>
-                      <option>BPSC Preparation</option>
-                      <option>Bihar Police Preparation</option>
-                      <option>Bihar SI Preparation</option>
-                      <option>Defence Preparation</option>
-                      <option>Banking Preparation</option>
-                      <option>CTET/STET Preparation</option>
-                      <option>UGC NET Preparation</option>
+                    <input type="tel" name="phone" placeholder="Phone Number" required />
+                  </div>
+                  <div className="form-group">
+                    <select name="course">
+                      <option value="SSC">SSC Preparation</option>
+                      <option value="Railway">Railway Preparation</option>
+                      <option value="BPSC">BPSC Preparation</option>
+                      <option value="Bihar Police">Bihar Police Preparation</option>
+                      <option value="Bihar SI">Bihar SI Preparation</option>
+                      <option value="Defence">Defence Preparation</option>
+                      <option value="Banking">Banking Preparation</option>
+                      <option value="CTET/STET">CTET/STET Preparation</option>
+                      <option value="UGC NET">UGC NET Preparation</option>
                     </select>
                   </div>
                   <div className="form-group">
-                    <textarea placeholder="Message" rows={4}></textarea>
+                    <textarea name="message" placeholder="Message" rows={4} required></textarea>
                   </div>
-                  <button type="button" className="btn-primary w-full">Submit</button>
+                  <button type="submit" className="btn-primary w-full">Send Message</button>
                 </form>
               </div>
               <div className="feature-card animate-on-scroll">

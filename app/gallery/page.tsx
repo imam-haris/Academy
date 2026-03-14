@@ -22,6 +22,9 @@ export default function GalleryPage() {
     { src: "/gallery-1.jpg", alt: "Modern Classroom Setting" },
     { src: "/gallery-2.jpg", alt: "Faculty Discussion Room" },
     { src: "/gallery-3.jpg", alt: "Main Learning Hall" },
+    { src: "/gallery-4.jpg", alt: "Our Campus Building", position: "top" },
+    { src: "/gallery-5.jpg", alt: "Campus Parking Area", position: "top" },
+    { src: "/gallery-6.jpg", alt: "Smart Classroom Session", position: "top" },
   ];
 
   return (
@@ -44,6 +47,7 @@ export default function GalleryPage() {
                     src={img.src} 
                     alt={img.alt} 
                     className="gallery-img"
+                    style={{ objectPosition: img.position || 'center' }}
                   />
                   <div className="gallery-overlay">
                     <span>{img.alt}</span>
@@ -56,7 +60,7 @@ export default function GalleryPage() {
             <div className="gallery-card animate-on-scroll">
               <div className="gallery-img-wrapper">
                 <video
-                  src="/gallery.MP4"
+                  src="/gallery_Video.mp4"
                   className="gallery-img"
                   autoPlay
                   loop
