@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -46,60 +47,52 @@ export default function Home() {
   return (
     <main>
       <Navbar />
-      {/* ═══════════════════ HERO ═══════════════════ */}
-      <section className="hero" id="hero">
-        <div className="hero-inner">
-          <div className="hero-content">
-            <div className="hero-badge animate-on-scroll">
-              <span className="badge-dot"></span>
-              A Premier Government Exam Institute
+      {/* ═══════════════════ MAIN BANNER ═══════════════════ */}
+      <section className="hero-banner">
+        <div className="container banner-grid">
+          <div className="banner-content">
+            <div className="banner-logo-wrap">
+              <Image src="/logo_new.png" alt="World Touch Official Logo" width={190} height={170} className="banner-logo-img" style={{ borderRadius: '50%' }} />
             </div>
-            
-            <h1 className="hero-title animate-on-scroll">
-              World Touch <br />
-              <span className="gradient-text">Coaching</span>
-            </h1>
+            <h1 className="banner-title">WORLD TOUCH</h1>
+            <h2 className="banner-subtitle">Coaching Institute</h2>
 
-            <div className="hero-quote-wrap animate-on-scroll">
-              <span className="quote-icon">✦</span>
-              <p className="hero-quote">
-                "A beacon of excellence where aspirations meet structured guidance and proven results."
-              </p>
-              <span className="quote-icon">✦</span>
+            <div className="exam-tags-banner">
+              <span>SSC</span> <span>BANK</span> <span>RAILWAY</span> <span>BPSC</span> <span>DAROGA</span> <span>BPSC TEACHER</span>
             </div>
 
-            <div className="hero-info-grid animate-on-scroll">
-              <div className="hero-info-card">
-                <div className="info-card-icon">🎯</div>
-                <div className="info-card-content">
-                  <h4>Target Exams</h4>
-                  <p>SSC • Railway • BPSC • Bihar Police • Banking • CTET/STET • UGC NET</p>
-                </div>
-              </div>
-              <div className="hero-info-card">
-                <div className="info-card-icon">📍</div>
-                <div className="info-card-content">
-                  <h4>Our Campus</h4>
-                  <p>Miscot lane, 2nd floor, Sinha complex, Near Jubba Sahni Park, Muzaffarpur</p>
-                </div>
-              </div>
+            <ul className="banner-features-new">
+              <li><span className="feature-dot"></span> Complete Preparation for Government Exams</li>
+              <li><span className="feature-dot"></span> Expert Faculty</li>
+              <li><span className="feature-dot"></span> Concept + Trick Based Teaching</li>
+              <li><span className="feature-dot"></span> Daily Practice Questions</li>
+              <li><span className="feature-dot"></span> Weekly Mock Test</li>
+            </ul>
+
+            <div className="banner-footer-info">
+              <p>📍 Mithanpura, Muzaffarpur, Bihar</p>
+              <p>📞 +91-9430655073</p>
             </div>
 
-            <div className="hero-ctas animate-on-scroll">
-              <a href="/courses" className="btn-primary btn-lg">
-                View All Courses
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
-              </a>
-              <a href="/contact" className="btn-outline btn-lg">
-                Reach Us
-              </a>
+            <div className="banner-actions">
+              <a href="/contact" className="btn-gold">Join Now</a>
             </div>
+          </div>
+
+          <div className="banner-director-wrap">
+            <Image
+              src="/director_new3.jpg"
+              alt="Director - World Touch Coaching"
+              width={480}
+              height={500}
+              className="director-pfp-main"
+              priority
+            />
           </div>
         </div>
 
-        <div className="hero-decoration">
-          <div className="decoration-circle"></div>
-          <div className="decoration-grid-pattern"></div>
+        <div className="banner-decoration-new">
+          <div className="gold-flow-lines"></div>
         </div>
 
         <div className="scroll-indicator">
@@ -127,6 +120,75 @@ export default function Home() {
           </div>
         </div>
       </div>
+
+      {/* ═══════════════ POPULAR COURSES MARQUEE ═══════════════ */}
+      <section className="popular-courses-section">
+        <div className="container">
+          <div className="section-header animate-on-scroll">
+            <span className="section-tag" style={{ background: 'rgba(99,102,241,0.08)', color: '#6366f1' }}>Trending Units</span>
+            <h2 className="section-title">Our <span className="gradient-text">Popular Courses</span></h2>
+            <p className="section-desc">Join the most sought-after programs with proven results and expert guidance.</p>
+          </div>
+        </div>
+
+        <div className="popular-courses-roll">
+          <div className="popular-courses-track">
+            {/* Duplicating cards for seamless infinite scroll */}
+            {[1, 2].map((i) => (
+              <div key={i} style={{ display: 'flex', gap: '30px' }}>
+                <Link href="/contact" className="mini-course-card">
+                  <div className="mini-card-image">
+                    <Image src="/ssc.jpg" alt="SSC Course" fill className="object-cover" />
+                  </div>
+                  <div className="mini-card-body">
+                    <h4>SSC Foundation</h4>
+                    <span className="mini-card-btn">Enroll Now →</span>
+                  </div>
+                </Link>
+
+                <Link href="/contact" className="mini-course-card">
+                  <div className="mini-card-image">
+                    <Image src="/railway.jpg" alt="Railway Course" fill className="object-cover" />
+                  </div>
+                  <div className="mini-card-body">
+                    <h4>Railway Batch</h4>
+                    <span className="mini-card-btn">Enroll Now →</span>
+                  </div>
+                </Link>
+
+                <Link href="/contact" className="mini-course-card">
+                  <div className="mini-card-image">
+                    <Image src="/bpsc.jpg" alt="BPSC Course" fill className="object-cover" />
+                  </div>
+                  <div className="mini-card-body">
+                    <h4>BPSC (Pre + Mains)</h4>
+                    <span className="mini-card-btn">Enroll Now →</span>
+                  </div>
+                </Link>
+
+                <Link href="/contact" className="mini-course-card">
+                  <div className="mini-card-image">
+                    <Image src="/biharPolice.jpg" alt="Bihar Police Course" fill className="object-cover" />
+                  </div>
+                  <div className="mini-card-body">
+                    <h4>Bihar Police Special</h4>
+                    <span className="mini-card-btn">Enroll Now →</span>
+                  </div>
+                </Link>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="container">
+          <div className="more-courses-link-wrap animate-on-scroll">
+            <Link href="/courses" className="btn-more-features">
+              Explore More Courses
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+            </Link>
+          </div>
+        </div>
+      </section>
 
       {/* ═══════════════ SPECIAL OFFERS ═══════════════ */}
       <section className="offers-section" id="offers">
@@ -183,7 +245,7 @@ export default function Home() {
                 <span className="offer-period">/ per subject</span>
               </div>
               <ul className="offer-features">
-                <li>✓ Maths, History, Polity &amp; more</li>
+                <li>✓ Maths, Reasoning, History, Polity &amp; more</li>
                 <li>✓ Concise &amp; exam-ready</li>
                 <li>✓ Instant digital delivery</li>
                 <li>✓ Printed copy available</li>
@@ -263,7 +325,7 @@ export default function Home() {
             <div className="director-card">
               <div className="director-image-wrapper">
                 <Image
-                  src="/director.jpg"
+                  src="/director_new.jpg"
                   alt="Director - World Touch Coaching"
                   width={400}
                   height={500}

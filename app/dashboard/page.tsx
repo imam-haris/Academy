@@ -43,6 +43,7 @@ export default function DashboardPage() {
     { id: "maths", name: "Mathematics", icon: "📐" },
     { id: "geography", name: "Geography", icon: "🌍" },
     { id: "history", name: "History", icon: "📜" },
+    { id: "reasoning", name: "Reasoning", icon: "🧠" },
     { id: "english", name: "English", icon: "📚" },
     { id: "polity", name: "Polity", icon: "⚖️" },
     { id: "economy", name: "Economy", icon: "💰" },
