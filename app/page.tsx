@@ -325,7 +325,7 @@ export default function Home() {
             <div className="director-card">
               <div className="director-image-wrapper">
                 <Image
-                  src="/director_new.jpg"
+                  src="/director_new3.jpg"
                   alt="Director - World Touch Coaching"
                   width={400}
                   height={500}
