@@ -168,10 +168,40 @@ export default function Home() {
 
                 <Link href="/contact" className="mini-course-card">
                   <div className="mini-card-image">
-                    <Image src="/biharPolice.jpg" alt="Bihar Police Course" fill className="object-cover" />
+                    <Image src="/banking.jpg" alt="Banking Course" fill className="object-cover" />
                   </div>
                   <div className="mini-card-body">
-                    <h4>Bihar Police Special</h4>
+                    <h4>Banking Special</h4>
+                    <span className="mini-card-btn">Enroll Now →</span>
+                  </div>
+                </Link>
+
+                <Link href="/contact" className="mini-course-card">
+                  <div className="mini-card-image">
+                    <Image src="/Bihar_SI.jpg" alt="Bihar SI Course" fill className="object-cover" />
+                  </div>
+                  <div className="mini-card-body">
+                    <h4>Bihar SI Batch</h4>
+                    <span className="mini-card-btn">Enroll Now →</span>
+                  </div>
+                </Link>
+
+                <Link href="/contact" className="mini-course-card">
+                  <div className="mini-card-image">
+                    <Image src="/CTET_STET.jpg" alt="CTET STET Course" fill className="object-cover" />
+                  </div>
+                  <div className="mini-card-body">
+                    <h4>CTET / STET</h4>
+                    <span className="mini-card-btn">Enroll Now →</span>
+                  </div>
+                </Link>
+
+                <Link href="/contact" className="mini-course-card">
+                  <div className="mini-card-image">
+                    <Image src="/UGC_NET.jpg" alt="UGC NET Course" fill className="object-cover" />
+                  </div>
+                  <div className="mini-card-body">
+                    <h4>UGC NET</h4>
                     <span className="mini-card-btn">Enroll Now →</span>
                   </div>
                 </Link>

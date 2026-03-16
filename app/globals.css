@@ -2007,6 +2007,19 @@ h5 {
   border-color: var(--accent-indigo);
 }
 
+.offer-image-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  border-radius: inherit;
+}
+
+.opacity-20 {
+  opacity: 0.12;
+}
+
 .offer-icon-wrap {
   width: 64px;
   height: 64px;
