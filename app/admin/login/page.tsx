@@ -72,7 +72,7 @@ export default function AdminLoginPage() {
           <div className="admin-login-header">
             <span className="admin-tag">🔒 Admin Portal</span>
             <h2>Faculty & Director <span className="admin-gradient">Login</span></h2>
-            <p>Upload notes and video lectures for students.</p>
+            <p>Upload contents for Physics, Chemistry, Biology, and more.</p>
           </div>
 
           {error && <div className="admin-auth-error">{error}</div>}

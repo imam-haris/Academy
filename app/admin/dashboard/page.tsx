@@ -5,7 +5,7 @@ import Footer from "../../../components/Footer";
 import { useRouter } from "next/navigation";
 import { supabase } from "../../../lib/supabase";
 
-const SUBJECTS = ["maths", "geography", "history", "reasoning", "english", "polity", "economy", "current-affairs"];
+const SUBJECTS = ["maths", "physics", "chemistry", "biology", "geography", "history", "reasoning", "english", "polity", "economy", "current-affairs"];
 
 interface Chapter {
   id: number;

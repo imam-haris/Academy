@@ -15,6 +15,7 @@ export default function LoginPage() {
   const [password, setPassword] = useState("");
   const [loginId, setLoginId] = useState("");
   const [loginPass, setLoginPass] = useState("");
+  const [selectedSubject, setSelectedSubject] = useState("physics");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const router = useRouter();
@@ -93,6 +94,7 @@ export default function LoginPage() {
         .update({
           student_id: generatedId,
           password: generatedPass,
+          subject: selectedSubject,
         })
         .eq("id", data.id);
 
@@ -200,6 +202,26 @@ export default function LoginPage() {
                   onChange={(e) => setMobile(e.target.value)}
                   maxLength={10}
                 />
+              </div>
+              <div className="form-group mt-4">
+                <label>Target Subject</label>
+                <select 
+                  className="subject-select"
+                  value={selectedSubject}
+                  onChange={(e) => setSelectedSubject(e.target.value)}
+                >
+                  <option value="maths">Mathematics</option>
+                  <option value="physics">Physics</option>
+                  <option value="chemistry">Chemistry</option>
+                  <option value="biology">Biology</option>
+                  <option value="geography">Geography</option>
+                  <option value="history">History</option>
+                  <option value="reasoning">Reasoning</option>
+                  <option value="english">English</option>
+                  <option value="polity">Polity</option>
+                  <option value="economy">Economy</option>
+                  <option value="current-affairs">Current Affairs</option>
+                </select>
               </div>
               <div className="flex flex-col justify-between items-center mt-4">
                 <button className="btn-primary w-full" type="submit" disabled={loading}>
@@ -336,7 +358,8 @@ export default function LoginPage() {
           margin-bottom: 8px;
         }
 
-        .form-group input {
+        .form-group input,
+        .subject-select {
           width: 100%;
           background: #ffffff;
           border: 1px solid var(--border-color);
@@ -347,7 +370,8 @@ export default function LoginPage() {
           transition: border-color 0.3s;
         }
 
-        .form-group input:focus {
+        .form-group input:focus,
+        .subject-select:focus {
           border-color: var(--accent-indigo);
         }
 

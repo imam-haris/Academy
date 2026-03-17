@@ -41,6 +41,9 @@ export default function DashboardPage() {
 
   const subjects = [
     { id: "maths", name: "Mathematics", icon: "📐" },
+    { id: "physics", name: "Physics", icon: "⚛️" },
+    { id: "chemistry", name: "Chemistry", icon: "🧪" },
+    { id: "biology", name: "Biology", icon: "🧬" },
     { id: "geography", name: "Geography", icon: "🌍" },
     { id: "history", name: "History", icon: "📜" },
     { id: "reasoning", name: "Reasoning", icon: "🧠" },
