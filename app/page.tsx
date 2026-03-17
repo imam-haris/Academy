@@ -69,13 +69,14 @@ export default function Home() {
               <li><span className="feature-dot"></span> Weekly Mock Test</li>
             </ul>
 
-            <div className="banner-footer-info">
-              <p>📍 Mithanpura, Muzaffarpur, Bihar</p>
-              <p>📞 +91-9430655073</p>
-            </div>
-
-            <div className="banner-actions">
-              <a href="/contact" className="btn-gold">Join Now</a>
+            <div className="banner-footer-info" style={{ display: 'block' }}>
+              <p style={{ marginBottom: '20px' }}>📍 Mithanpura, Muzaffarpur, Bihar</p>
+              <div className="social-links-row" style={{ display: 'flex', alignItems: 'center', gap: '20px', flexWrap: 'wrap' }}>
+                <a href="tel:+919430655073" className="social-pill phone">
+                  <span>📞</span> +91-9430655073
+                </a>
+                <a href="/contact" className="btn-gold" style={{ padding: '12px 32px', fontSize: '1rem' }}>Join Now</a>
+              </div>
             </div>
           </div>
 

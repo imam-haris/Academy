@@ -29,6 +29,11 @@ export default function Footer() {
           <div className="footer-links">
             <h4>Contact</h4>
             <Link href="/contact">Find a Center</Link>
+            <a href="https://wa.me/918862994666" target="_blank" rel="noopener noreferrer">📱 WhatsApp Director</a>
+            <a href="https://www.instagram.com/worldtouchclasses?igsh=Z2dvNmFzejdnaXMx" target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <Image src="/insta-logo2.png" alt="Instagram" width={22} height={22} style={{ borderRadius: '50%' }} />
+              Instagram
+            </a>
             <Link href="/contact">Message Us</Link>
           </div>
         </div>

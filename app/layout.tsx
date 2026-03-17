@@ -17,6 +17,8 @@ export const metadata: Metadata = {
   description: "World Touch Coaching is a premier coaching institute dedicated to helping students achieve excellence in academics and competitive examinations.",
 };
 
+import FloatingSocials from "../components/FloatingSocials";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -26,6 +28,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.variable} ${outfit.variable}`}>
         {children}
+        <FloatingSocials />
       </body>
     </html>
   );

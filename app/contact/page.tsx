@@ -57,6 +57,7 @@ export default function Page() {
                       <option value="Banking">Banking Preparation</option>
                       <option value="CTET/STET">CTET/STET Preparation</option>
                       <option value="UGC NET">UGC NET Preparation</option>
+                      <option value="Science">Science (Phy/Chem/Bio)</option>
                     </select>
                   </div>
                   <div className="form-group">

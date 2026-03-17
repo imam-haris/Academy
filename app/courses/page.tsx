@@ -141,7 +141,7 @@ export default function Page() {
               <div className="feature-card animate-on-scroll course-card-new course-card-large">
                 <div className="course-card-image" style={{ background: 'var(--bg-secondary)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                   <div className="feature-card-icon-styled" style={{ margin: 0, padding: 0 }}>
-                    <svg viewBox="0 0 48 48" fill="none" style={{ width: '120px', height: '120px' }}><circle cx="16" cy="20" r="6" stroke="url(#p2)" strokeWidth="2" /><circle cx="32" cy="20" r="6" stroke="url(#p2)" strokeWidth="2" /><path d="M8 38C8 32 12 28 16 28C18 28 20 28 24 30C28 28 30 28 32 28C36 28 40 32 40 38" stroke="url(#p2)" strokeWidth="2" strokeLinecap="round" /><defs><linearGradient id="p2" x1="8" y1="14" x2="40" y2="38"><stop stopColor="#06b6d4" /><stop offset="1" stopColor="#6366f1" /></linearGradient></defs></svg>
+                    <Image src="/Defence.png" alt="Defence" fill className="object-cover" />
                   </div>
                 </div>
                 <div className="course-card-content">
@@ -218,7 +218,7 @@ export default function Page() {
               <div className="feature-card animate-on-scroll course-card-new course-card-large">
                 <div className="course-card-image" style={{ background: 'var(--bg-secondary)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                   <div className="feature-card-icon-styled" style={{ margin: 0, padding: 0 }}>
-                    <svg viewBox="0 0 48 48" fill="none" style={{ width: '120px', height: '120px' }}><circle cx="24" cy="24" r="20" stroke="url(#p1)" strokeWidth="2" /><path d="M18 24L22 28L30 20" stroke="url(#p1)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" /><defs><linearGradient id="p1" x1="4" y1="4" x2="44" y2="44"><stop stopColor="#6366f1" /><stop offset="1" stopColor="#a855f7" /></linearGradient></defs></svg>
+                    <Image src="/mock.png" alt="Mock" fill className="object-cover" />
                   </div>
                 </div>
                 <div className="course-card-content">
