@@ -110,7 +110,7 @@ export default function Page() {
               {/* Course 6 - Reasoning */}
               <div className="feature-card animate-on-scroll course-card-new course-card-large">
                 <div className="course-card-image">
-                  <Image src="/reasoning_new.png" alt="Reasoning Special Batch" fill className="object-cover" />
+                  <Image src="/reasoning.png" alt="Reasoning Special Batch" fill className="object-cover" />
                 </div>
                 <div className="course-card-content">
                   <h3>Reasoning Special Batch</h3>
